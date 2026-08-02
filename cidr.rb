@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby
+# frozen_string_literal: true
 
 # Inline gem loading
 require "bundler/inline"
@@ -44,4 +45,3 @@ table = TTY::Table.new(
 )
 
 puts table.render(:ascii)
-

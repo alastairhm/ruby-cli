@@ -18,13 +18,20 @@ ruby organise.rb
 ruby qrgen.rb generate "https://example.com"
 ```
 
-There is no build, lint, or test command configured in this repo.
+There is no build or test command configured in this repo. Linting is done with RuboCop (config in `.rubocop.yml`, tuned to this repo's conventions — e.g. double-quoted strings — rather than RuboCop's defaults):
+
+```bash
+gem install rubocop
+rubocop
+```
+
+CI runs this on every PR via `.github/workflows/lint.yml`.
 
 ## Adding a new script
 
 Follow the existing pattern (see `cidr.rb`, `organise.rb`, `qrgen.rb`):
 
-- `#!/usr/bin/env ruby` shebang, `# frozen_string_literal: true` where used.
+- `#!/usr/bin/env ruby` shebang, `# frozen_string_literal: true`.
 - `require "bundler/inline"` followed by a `gemfile(true) do ... end` block listing only the gems that script needs — do not introduce a shared Gemfile.
 - Use `TTY::Prompt` for interactive input (with `q.required` / `q.validate` as needed) and accept the same value via `ARGV` so the script can run non-interactively.
 - Scripts that support subcommands (see `qrgen.rb`) use a plain `case ARGV.shift` dispatcher rather than an external CLI framework.

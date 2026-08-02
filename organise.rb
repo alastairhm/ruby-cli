@@ -16,14 +16,14 @@ require "tty-progressbar"
 DOWNLOADS = File.join(Dir.home, "Downloads")
 
 RULES = {
-  images:    %w[.jpg .jpeg .png .gif .webp .svg],
-  videos:    %w[.mp4 .mov .mkv .avi .webm],
-  audio:     %w[.mp3 .flac .wav .aac .ogg],
+  images: %w[.jpg .jpeg .png .gif .webp .svg],
+  videos: %w[.mp4 .mov .mkv .avi .webm],
+  audio: %w[.mp3 .flac .wav .aac .ogg],
   documents: %w[.pdf .doc .docx .xls .xlsx .ppt .pptx .txt .md],
-  archives:  %w[.zip .tar .gz .bz2 .7z .rar],
-  data:      %w[.csv .json .xml .yaml .yml .sql],
-  code:      %w[.rb .py .js .html .css .java .c .cpp .php .go .rs .swift]
-}
+  archives: %w[.zip .tar .gz .bz2 .7z .rar],
+  data: %w[.csv .json .xml .yaml .yml .sql],
+  code: %w[.rb .py .js .html .css .java .c .cpp .php .go .rs .swift]
+}.freeze
 
 def classify(file)
   ext = File.extname(file).downcase
@@ -87,4 +87,3 @@ def organise!
 end
 
 organise!
-

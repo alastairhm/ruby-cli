@@ -12,4 +12,13 @@ Each script is self-contained and installs its own dependencies at runtime via `
 | [`organise.rb`](organise.rb) | Tidies your `~/Downloads` folder by sorting files into category-based subdirectories. | [organise.md](organise.md) |
 | [`qrgen.rb`](qrgen.rb) | Generates QR codes from text, URLs, WiFi credentials, or a batch file. | [qrgen.md](qrgen.md) |
 
+## Linting
+
+Pull requests are linted with [RuboCop](https://github.com/rubocop/rubocop) via GitHub Actions (see `.github/workflows/lint.yml`). To run it locally:
+
+```bash
+gem install rubocop
+rubocop
+```
+
 See [CHANGELOG.md](CHANGELOG.md) for release history.

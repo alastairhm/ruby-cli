@@ -112,4 +112,3 @@ else
   puts "  qrgen wifi              # Create a WiFi QR code"
   puts "  qrgen batch file.txt    # Generate many QR codes"
 end
-

@@ -1,0 +1,29 @@
+AllCops:
+  NewCops: disable
+  TargetRubyVersion: 3.4
+  SuggestExtensions: false
+
+# This repo consistently uses double-quoted strings.
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+
+# One-off scripts, not a library — %r/%w conversions and rigid method-length
+# limits add noise without improving readability here.
+Style/RegexpLiteral:
+  Enabled: false
+
+Style/WordArray:
+  Enabled: false
+
+Layout/EmptyLineAfterGuardClause:
+  Enabled: false
+
+Metrics/MethodLength:
+  Max: 25
+
+Metrics/AbcSize:
+  Max: 30
+
+# Flags TTY::Spinner's own :pulse_2 format option, which we don't control.
+Naming/VariableNumber:
+  Enabled: false
