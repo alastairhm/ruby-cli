@@ -12,3 +12,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - `CHANGELOG.md` to track project history.
 - `cidr.md` documenting the CIDR inspector script.
 - Script overview table in `README.md` linking to each script's docs.
+
+### Fixed
+
+- `organise.rb` no longer silently overwrites an existing file in the destination category folder on a filename collision; it now appends a numeric suffix instead.
+- `organise.rb` exits with a clear message instead of crashing when `~/Downloads` doesn't exist.
+- `qrgen.rb` `batch` mode no longer silently overwrites existing `qr_N.png` files; it now uses the same collision-avoiding filename logic as `generate`/`wifi`.
+- `qrgen.rb` no longer crashes with an unhandled exception when input text is too large to encode as a QR code; `generate`/`wifi` abort with a clear error, and `batch` skips the offending line and continues.
+
+### Removed
+
+- Unused `tty-spinner` and unnecessary `fileutils` gem declarations from `organise.rb`'s inline `Gemfile` (the latter caused a spurious Bundler version-resolution warning on every run).

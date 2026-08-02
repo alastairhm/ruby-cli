@@ -6,8 +6,6 @@ require "bundler/inline"
 gemfile(true) do
   source "https://rubygems.org"
   gem "tty-prompt"
-  gem "tty-spinner"
-  gem "fileutils"
   gem "tty-progressbar"
 end
 
@@ -35,8 +33,30 @@ def classify(file)
   "Other"
 end
 
+# Avoids clobbering an existing file at dest: name.ext -> name_2.ext -> ...
+def unique_destination(dest)
+  return dest unless File.exist?(dest)
+
+  dir = File.dirname(dest)
+  ext = File.extname(dest)
+  base = File.basename(dest, ext)
+
+  n = 2
+  loop do
+    candidate = File.join(dir, "#{base}_#{n}#{ext}")
+    return candidate unless File.exist?(candidate)
+    n += 1
+  end
+end
+
 def organise!
   prompt = TTY::Prompt.new
+
+  unless Dir.exist?(DOWNLOADS)
+    prompt.error "#{DOWNLOADS} does not exist."
+    return
+  end
+
   puts "Scanning #{DOWNLOADS}…"
 
   files = Dir.children(DOWNLOADS).reject { |f| File.directory?(File.join(DOWNLOADS, f)) }
@@ -56,7 +76,7 @@ def organise!
     FileUtils.mkdir_p(target_dir)
 
     source = File.join(DOWNLOADS, file)
-    dest   = File.join(target_dir, file)
+    dest   = unique_destination(File.join(target_dir, file))
 
     FileUtils.mv(source, dest)
 
