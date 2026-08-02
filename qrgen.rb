@@ -33,15 +33,25 @@ def next_filename(base = "qr", ext = "png")
   end
 end
 
+# Raises RQRCodeCore::QRCodeRunTimeError if text is too large to encode.
+def render_qr_png(text)
+  qr = RQRCode::QRCode.new(text)
+  qr.as_png(size: 300, border_modules: 4).to_s
+end
+
 def generate_qr(text)
   spinner = TTY::Spinner.new("[:spinner] Generating QR code...", format: :pulse_2)
   spinner.auto_spin
 
-  qr = RQRCode::QRCode.new(text)
-  png = qr.as_png(size: 300, border_modules: 4)
+  begin
+    png = render_qr_png(text)
+  rescue RQRCodeCore::QRCodeRunTimeError => e
+    spinner.error("(failed)")
+    abort "Could not generate QR code: #{e.message}"
+  end
 
   filename = next_filename
-  File.binwrite(filename, png.to_s)
+  File.binwrite(filename, png)
 
   spinner.success("(done)")
   puts "Saved as #{filename}"
@@ -82,11 +92,15 @@ when "batch"
     next if line.strip.empty?
     puts "Generating QR for line #{i + 1}: #{line}"
 
-    qr = RQRCode::QRCode.new(line)
-    png = qr.as_png(size: 300, border_modules: 4)
+    begin
+      png = render_qr_png(line)
+    rescue RQRCodeCore::QRCodeRunTimeError => e
+      puts "Skipping line #{i + 1}: #{e.message}"
+      next
+    end
 
-    filename = "qr_#{i + 1}.png"
-    File.binwrite(filename, png.to_s)
+    filename = next_filename("qr_#{i + 1}")
+    File.binwrite(filename, png)
     puts "Saved as #{filename}"
   end
 
@@ -98,4 +112,3 @@ else
   puts "  qrgen wifi              # Create a WiFi QR code"
   puts "  qrgen batch file.txt    # Generate many QR codes"
 end
-
