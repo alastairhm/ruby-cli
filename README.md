@@ -9,7 +9,7 @@ Each script is self-contained and installs its own dependencies at runtime via `
 | Script | Description | Docs |
 | --- | --- | --- |
 | [`cidr.rb`](cidr.rb) | Inspects an IPv4 CIDR block and prints network, range, and host count details as a table. | [cidr.md](cidr.md) |
-| [`dnscheck.rb`](dnscheck.rb) | Resolves hostnames against several DNS servers and compares the answers and timings. | [dnscheck.md](dnscheck.md) |
+| [`dnscheck.rb`](dnscheck.rb) | Resolves hostnames against several DNS servers and compares the answers and timings; run with no arguments for an interactive TUI. | [dnscheck.md](dnscheck.md) |
 | [`organise.rb`](organise.rb) | Tidies your `~/Downloads` folder by sorting files into category-based subdirectories. | [organise.md](organise.md) |
 | [`qrgen.rb`](qrgen.rb) | Generates QR codes from text, URLs, WiFi credentials, or a batch file. | [qrgen.md](qrgen.md) |
 
