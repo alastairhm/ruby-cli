@@ -8,6 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Added
 
+- `dnscheck.rb` to resolve hostnames against multiple DNS servers (system resolver, 1.1.1.1 and 8.8.8.8 by default) and flag failures or disagreement, with a progress spinner while lookups run. Documented in `dnscheck.md`.
 - `CLAUDE.md` with guidance for working in this repo.
 - `CHANGELOG.md` to track project history.
 - `cidr.md` documenting the CIDR inspector script.
@@ -23,6 +24,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Changed
 
+- `.rubocop.yml` disables `Metrics/ClassLength`, since a script's tty-option DSL alone runs to dozens of declarative lines.
 - `organise.rb` freezes the `RULES` constant and `cidr.rb` gained a `# frozen_string_literal: true` comment, matching the other scripts and satisfying RuboCop.
 
 ### Removed

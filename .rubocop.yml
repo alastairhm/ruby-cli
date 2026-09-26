@@ -24,6 +24,12 @@ Metrics/MethodLength:
 Metrics/AbcSize:
   Max: 30
 
+# Scripts are single-file classes whose option DSL (tty-option) alone runs to
+# dozens of declarative lines; splitting them up just to satisfy a line count
+# hurts readability.
+Metrics/ClassLength:
+  Enabled: false
+
 # Flags TTY::Spinner's own :pulse_2 format option, which we don't control.
 Naming/VariableNumber:
   Enabled: false
