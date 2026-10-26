@@ -6,8 +6,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
+## [1.0.0] - 2026-10-26
+
+First tagged release.
+
 ### Added
 
+- `cidr.rb` to inspect an IPv4 CIDR block and print its network, range and host count as a table.
+- `organise.rb` to tidy `~/Downloads` by sorting files into category subdirectories. Documented in `organise.md`.
+- `qrgen.rb` to generate QR codes from text, URLs, WiFi credentials or a batch file. Documented in `qrgen.md`.
 - `dnscheck.rb` to resolve hostnames against multiple DNS servers (system resolver, 1.1.1.1 and 8.8.8.8 by default) and flag failures or disagreement, with a progress spinner while lookups run. Documented in `dnscheck.md`.
 - `dnscheck.rb` interactive TUI: run with no hostnames to get a full-screen results box and an input line for typing domains (optionally with a record type, e.g. `gmail.com mx`), with a spinner, input history and scrolling. A blank line exits.
 - `CLAUDE.md` with guidance for working in this repo.
@@ -35,3 +42,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ### Removed
 
 - Unused `tty-spinner` and unnecessary `fileutils` gem declarations from `organise.rb`'s inline `Gemfile` (the latter caused a spurious Bundler version-resolution warning on every run).
+
+[Unreleased]: https://github.com/alastairhm/ruby-cli/compare/v1.0.0...HEAD
+[1.0.0]: https://github.com/alastairhm/ruby-cli/releases/tag/v1.0.0
