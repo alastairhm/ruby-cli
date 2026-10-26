@@ -30,6 +30,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - `dnscheck.rb` queries each host against all servers in parallel.
 - `.rubocop.yml` disables `Metrics/ClassLength`, since a script's tty-option DSL alone runs to dozens of declarative lines.
 - `organise.rb` freezes the `RULES` constant and `cidr.rb` gained a `# frozen_string_literal: true` comment, matching the other scripts and satisfying RuboCop.
+- Ruby pinned in `.tool-versions` bumped from 3.4.7 to 3.4.12.
 
 ### Removed
 

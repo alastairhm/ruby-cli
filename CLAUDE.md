@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Overview
 
-A collection of standalone Ruby CLI scripts built on the TTY toolkit (tty-prompt, tty-table, tty-spinner, tty-progressbar). Ruby version is pinned via `.tool-versions` (3.4.7, asdf-style).
+A collection of standalone Ruby CLI scripts built on the TTY toolkit (tty-prompt, tty-table, tty-spinner, tty-progressbar). Ruby version is pinned via `.tool-versions` (3.4.12, asdf-style).
 
 Each script is a single self-contained file — there is no shared library code, no Gemfile, and no test suite. Every script begins with `require "bundler/inline"` and declares its own gems in a `gemfile(true) do ... end` block, so dependencies are installed automatically on first run (internet access required the first time a script runs, or after gems change).
 
